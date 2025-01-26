@@ -2,6 +2,7 @@ import { fetchPosts } from '../lib/fetchPosts';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 const BlogPage = async () => {
+  // fetchPosts 関数から取得
   const posts = await fetchPosts();
 
   return (

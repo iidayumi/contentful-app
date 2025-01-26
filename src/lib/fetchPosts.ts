@@ -9,10 +9,12 @@ type BlogPost = {
 };
 
 export const fetchPosts = async (): Promise<BlogPost[]> => {
-  const entries = await client.getEntries({ content_type: 'pageBlogPost' }); // 適切なIDを設定
+    // pageBlogPost コンテンツタイプのエントリだけを取得
+  const entries = await client.getEntries({ content_type: 'pageBlogPost' }); // Contentful API にアクセスするための クライアントインスタンス 
+// client.getEntries() の結果　　配列の各エントリ（entry）を BlogPost 型に変換
   return entries.items.map((entry) => ({
     id: entry.sys.id,
-    title: entry.fields.title as string,
+    title: entry.fields.title as string, // as stringはデータが必ずあると仮定
     shortDescription: entry.fields.shortDescription as string,
     content: entry.fields.content as Document, // リッチテキスト型を使用
   }));
