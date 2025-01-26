@@ -1,11 +1,19 @@
 import client from './contentful';
+import { Document } from '@contentful/rich-text-types';
 
-export const fetchPosts = async () => {
-  const entries = await client.getEntries({ content_type: 'pageBlogPost' }); // IDは適切に設定
-  return entries.items.map((entry: any) => ({
+type BlogPost = {
+  id: string;
+  title: string;
+  shortDescription: string;
+  content: Document; // リッチテキストの型
+};
+
+export const fetchPosts = async (): Promise<BlogPost[]> => {
+  const entries = await client.getEntries({ content_type: 'pageBlogPost' }); // 適切なIDを設定
+  return entries.items.map((entry) => ({
     id: entry.sys.id,
-    title: entry.fields.title,
-    shortDescription: entry.fields.shortDescription,
-    content: entry.fields.content, // リッチテキストをそのまま取得
+    title: entry.fields.title as string,
+    shortDescription: entry.fields.shortDescription as string,
+    content: entry.fields.content as Document, // リッチテキスト型を使用
   }));
 };
