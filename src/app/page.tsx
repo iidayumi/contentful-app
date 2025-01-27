@@ -2,9 +2,11 @@ import { fetchPosts } from '../lib/fetchPosts';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 const BlogPage = async () => {
-  // fetchPosts 関数で取得
-  const posts = await fetchPosts();
 
+  const skip = 0; // 最初のデータから開始
+  const limit = 100; // 一度に取得するデータ数
+    // fetchPosts 関数で取得
+  const posts = await fetchPosts({ skip, limit });
   
   return (
     <div className="bg-gray-50 min-h-screen py-10">
