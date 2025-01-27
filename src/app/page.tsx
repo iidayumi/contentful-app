@@ -2,7 +2,7 @@ import { fetchPosts } from '../lib/fetchPosts';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 const BlogPage = async () => {
-
+// ページネーション部分
   const skip = 0; // 最初のデータから開始
   const limit = 100; // 一度に取得するデータ数
     // fetchPosts 関数で取得
