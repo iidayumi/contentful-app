@@ -1,8 +1,10 @@
 import { createClient } from 'contentful';
 
-// Contentful API にリクエストを送信
+// ContentfulのAPIに接続するためのクライアントインスタンスを作成
 const client = createClient({
+  // スペースID
   space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID || '',
+  // アクセストークン
   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN || '',
 });
 

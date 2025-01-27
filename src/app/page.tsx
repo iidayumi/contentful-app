@@ -2,9 +2,10 @@ import { fetchPosts } from '../lib/fetchPosts';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 const BlogPage = async () => {
-  // fetchPosts 関数から取得
+  // fetchPosts 関数で取得
   const posts = await fetchPosts();
 
+  
   return (
     <div className="bg-gray-50 min-h-screen py-10">
       <h1 className="text-4xl font-bold text-center mb-10 text-black">Blog Posts</h1>
@@ -19,6 +20,13 @@ const BlogPage = async () => {
           >
             <h2 className="text-2xl font-semibold mb-2 text-black">{post.title}</h2>
             <p className="text-black mb-4">{post.shortDescription}</p>
+            {post.featuredImage && (
+              <img
+                src={post.featuredImage}
+                alt={post.title}
+                className="w-full h-auto rounded-md mb-4"
+              />
+            )}
             <div className="prose text-black prose-h1:text-black prose-h2:text-black prose-p:text-black">
               {documentToReactComponents(post.content)}
             </div>
