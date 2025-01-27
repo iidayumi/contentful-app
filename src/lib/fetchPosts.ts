@@ -11,7 +11,7 @@ type BlogPost = {
 
 // データを取得
 export const fetchPosts = async (p0?: { skip?: number; limit?: number; order?: string; query?: string }): Promise<BlogPost[]> => {
-  const { skip = 0, limit = 100, order = 'sys.createdAt', query } = p0 || {};
+const { skip = 0, limit = 100, order = '-sys.updatedAt', query } = p0 || {};
 
   // pageBlogPostというコンテンツタイプのデータ（エントリー）
   const entries = await client.getEntries({
